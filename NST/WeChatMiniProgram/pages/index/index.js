@@ -4,10 +4,12 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
+    img: '',
     imgFile: '',
+    generate: '',
+    block: 'none',
     style: 1,
-    style_pos: [220, 5]
+    style_pos: [220, 5],
   },
 
   //事件处理函数
@@ -28,14 +30,17 @@ Page({
     var that = this;
     wx.chooseImage({
       count: 1,
-      sizeType: ['original', 'compressed'],
+      sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
-      success(res) {
-        console.log(res)
-        // tempFilePath可以作为img标签的src属性显示图片
+      success: function (res) {
+        let base64 = wx.getFileSystemManager().readFileSync(res.tempFilePaths[0], 'base64')
+        // console.log(base64)
+
         that.setData({
-          imgFile: res.tempFilePaths[0]
-        })
+          imgFile: res.tempFilePaths[0],
+          img: base64,
+          generate: ''
+        }) 
       }
     })
   },
@@ -54,6 +59,37 @@ Page({
     this.setData({
       imgFile: ''
     })
-  }
-})
+  },
 
+  uploadImage: function (e) {
+    console.log('transfer')
+
+    var that = this
+
+    this.setData({
+      block: 'block'
+    })
+
+    wx.uploadFile({
+      url: 'https://www.bugstop.site/nst/',
+      filePath: that.data.imgFile,
+      name: 'file',
+      formData: {
+        'style': that.data.style,
+        'img': that.data.img
+      },
+      success(res) {
+        const data = res.data
+        var obj = JSON.parse(data);
+
+        that.setData({
+          generate: obj.rc,
+          block: 'none'
+        })
+        
+        console.log(obj.rc)
+        console.log('done')
+      }
+    })
+  },
+})

@@ -16,12 +16,17 @@
 -->
 
 <view class="container">
+  <div id='block' style='display:{{block}}'></div>
+
   <div id='shadow'></div>
 
   <div class="head"></div>
 
   <!-- <h2>上传内容图片</h2> -->
-  <view class="images-wrapper">
+  <view wx:if="{{generate}}" class="images-wrapper" id="show">
+    <image  class="images images-up" src="data:image/png;base64,{{generate}}" mode="aspectFill"></image>
+  </view>
+  <view wx:else class="images-wrapper">
     <image class="images images-x" wx:if="{{imgFile}}" src="../../img/x.png" mode="aspectFill" bindtap="deleteImage"></image>
     <image class="images images-up" wx:if="{{imgFile}}" src="{{imgFile}}" mode="aspectFill" bindtap="deleteImage"></image>
     <image class="images images-up s" wx:else src="../../img/up.png" mode="aspectFill" bindtap="chooseImage"></image>
@@ -44,8 +49,11 @@
     <image class="images" src="http://neural-style-transfer.demo.bugstop.site/source/miniprogram/img/9_the_scream.jpg"       mode="aspectFill" bindtap="chooseStyle" data-index="9"></image>
   </div>
 
-  <view class="submit s">
-    <button wx:if="{{imgFile}}" type="default" bindtap="deleteImage">风 格 迁 移</button>
+  <view wx:if="{{generate}}" class="submit s">
+    <button type="default" bindtap="chooseImage">添 加 图 片</button>
+  </view>
+  <view wx:else class="submit s">
+    <button wx:if="{{imgFile}}" type="default" bindtap="uploadImage">风 格 迁 移</button>
     <button wx:else type="default" bindtap="chooseImage">添 加 图 片</button>
   </view>
 </view>

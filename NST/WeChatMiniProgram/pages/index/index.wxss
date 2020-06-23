@@ -1,4 +1,14 @@
 /**index.wxss**/
+
+#block {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  background-color: #607D8B;
+  opacity: 0.1;
+}
+
 #shadow {
   width: 850rpx;
   height: 50rpx;

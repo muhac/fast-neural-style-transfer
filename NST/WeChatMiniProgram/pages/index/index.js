@@ -70,6 +70,12 @@ Page({
       block: 'block'
     })
 
+    wx.showToast({
+      title: '由于个人服务器资源有限\n请稍等几秒返回计算结果',
+      icon: 'none',
+      duration: 3000
+    })
+
     wx.uploadFile({
       url: 'https://www.bugstop.site/nst/',
       filePath: that.data.imgFile,

@@ -50,7 +50,7 @@
   </div>
 
   <view wx:if="{{generate}}" class="submit s">
-    <button type="default" bindtap="chooseImage">添 加 图 片</button>
+    <button type="default" bindtap="chooseImage">更 换 图 片</button>
   </view>
   <view wx:else class="submit s">
     <button wx:if="{{imgFile}}" type="default" bindtap="uploadImage">风 格 迁 移</button>

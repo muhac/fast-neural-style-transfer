@@ -73,7 +73,7 @@ Page({
     wx.showToast({
       title: '由于个人服务器资源有限\n请稍等几秒返回计算结果',
       icon: 'none',
-      duration: 3000
+      duration: 5000
     })
 
     wx.uploadFile({

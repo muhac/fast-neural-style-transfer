@@ -2,9 +2,7 @@
 
 ## Background
 
-Fast neural style transfer is a method by which the content of one image can be fused with the style of another image. It is based upon JC Johnson et a                      +968nbbbnnnnnnnnnnnnnmjhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh32
-
-15l.s' fast style transfer [paper.](./NST/NeuralNetworks/_paper)
+Fast neural style transfer is a method by which the content of one image can be fused with the style of another image. It is based upon JC Johnson et al.s' fast style transfer [paper.](./NST/NeuralNetworks/_paper)
 
 ![](./NST/NeuralNetworks/images/outputs/line_geometry-training/20000.jpg)
 

@@ -62,8 +62,6 @@ Page({
   },
 
   uploadImage: function (e) {
-    console.log('transfer')
-
     var that = this
 
     this.setData({
@@ -73,8 +71,11 @@ Page({
     wx.showToast({
       title: '由于个人服务器资源有限\n请稍等几秒返回计算结果',
       icon: 'none',
-      duration: 5000
+      duration: 6000,
+      mask: true,
     })
+
+    console.log('transfer')
 
     wx.uploadFile({
       url: 'https://www.bugstop.site/nst/',
@@ -85,15 +86,33 @@ Page({
         'img': that.data.img
       },
       success(res) {
-        const data = res.data
-        var obj = JSON.parse(data);
+        try {
+          const data = res.data
+          var obj = JSON.parse(data);
+  
+          that.setData({
+            generate: obj.rc,
+          })
+  
+          console.log(obj.rc)
 
+        } catch (e) {
+          wx.showToast({
+            title: '远程服务器异常',
+            icon: 'none',
+            duration: 1000,
+          }),
+          that.setData({
+            img: '',
+            imgFile: '',
+            generate: '',
+          })
+        }
+      },
+      complete(res) {
         that.setData({
-          generate: obj.rc,
           block: 'none'
         })
-        
-        console.log(obj.rc)
         console.log('done')
       }
     })

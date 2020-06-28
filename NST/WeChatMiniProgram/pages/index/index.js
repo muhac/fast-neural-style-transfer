@@ -155,7 +155,7 @@ Page({
     var that = this
 
     wx.showActionSheet({
-			itemList: ['查看训练Loss曲线', '保持图片到本地'],
+			itemList: ['查看训练曲线', '保存图片到本地'],
 			success: function(res) {
         console.log(res.tapIndex)
         

@@ -14,6 +14,8 @@ from utils import *
 from flask import *
 from flask_cors import CORS
 
+import requests
+
 app = Flask(__name__, )
 # r'/*' 是通配符，让本服务器所有的URL 都允许跨域请求
 CORS(app, resources=r'/*')
@@ -42,38 +44,71 @@ def uploadFile():
         ind = request.form.get('style')
         img64 = request.form.get('img')
 
-        checkpoint_model = table[ind]
+        id = "***"
+        sc = "***"
 
+        result_text = {"statusCode": 200}
+
+        url = f"https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={id}&secret={sc}"
+        headers = {'content-type': 'application/x-www-form-urlencoded'}
+        response = requests.get(url, headers=headers)
+        content = response.content
+        ret = json.loads(content)
+        access_token = ret["access_token"]
+
+        t = f"/home/www/flask/nst/tmp/{str(time.time())}.png"
         byte_data = base64.b64decode(img64)
         image_data = BytesIO(byte_data)
         img = Image.open(image_data)
+        img.save(t)
 
-        device = torch.device("cpu")
+        url = 'https://api.weixin.qq.com/wxa/img_sec_check?access_token=' + access_token
 
-        transform = style_transform()
-
-        # Define model and load model checkpoint
-        transformer = TransformerNet().to(device)
-        transformer.load_state_dict(torch.load(checkpoint_model, map_location=torch.device('cpu')))
-        transformer.eval()
-
-        # Prepare input
-        image_tensor = Variable(transform(img)).to(device)
-        image_tensor = image_tensor.unsqueeze(0)
-
-        # Stylize image
-        with torch.no_grad():
-            stylized_image = denormalize(transformer(image_tensor)).cpu()
-
-        t = f"/home/www/flask/nst/tmp/{str(time.time())}.png"
-
-        save_image(stylized_image, t)
-        with open(t, "rb") as f:
-            base64_str = base64.b64encode(f.read())
+        media = {'contentType': 'image/png', 'value': open(t, "rb")}
+        d = {'access_token': access_token, 'media': media}
+        h = {'Content-Type': 'application/octet-stream'}
+        r = requests.post(url, data=d, headers=h).json()
+        result_text['errcode'] = r["errcode"]
+        print(r)
 
         os.remove(t)
 
-        result_text['rc'] = base64_str.decode()
+        if r["errcode"] != 0:
+            result_text['rc'] = 'fail'
+        else:
+
+            checkpoint_model = table[ind]
+
+            byte_data = base64.b64decode(img64)
+            image_data = BytesIO(byte_data)
+            img = Image.open(image_data)
+
+            device = torch.device("cpu")
+
+            transform = style_transform()
+
+            # Define model and load model checkpoint
+            transformer = TransformerNet().to(device)
+            transformer.load_state_dict(torch.load(checkpoint_model, map_location=torch.device('cpu')))
+            transformer.eval()
+
+            # Prepare input
+            image_tensor = Variable(transform(img)).to(device)
+            image_tensor = image_tensor.unsqueeze(0)
+
+            # Stylize image
+            with torch.no_grad():
+                stylized_image = denormalize(transformer(image_tensor)).cpu()
+
+            t = f"/home/www/flask/nst/tmp/{str(time.time())}.png"
+
+            save_image(stylized_image, t)
+            with open(t, "rb") as f:
+                base64_str = base64.b64encode(f.read())
+
+            os.remove(t)
+
+            result_text['rc'] = base64_str.decode()
 
     response = make_response(jsonify(result_text))
     response.headers['Access-Control-Allow-Origin'] = '*'

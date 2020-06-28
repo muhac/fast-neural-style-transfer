@@ -92,13 +92,20 @@ Page({
           const data = res.data
           var obj = JSON.parse(data);
 
-          that.setData({
-            generate: obj.rc,
-          })
+          if (obj.rc == "fail") {
+            wx.showToast({
+              title: '图片校验失败',
+              icon: 'none',
+              duration: 1000,
+            })
+          } else {
+            that.setData({
+              generate: obj.rc,
+            })
 
-          console.log(obj)
-          console.log(obj.rc)
-
+            console.log(obj)
+            console.log(obj.rc)
+          }
         } catch (e) {
           console.log(e)
 
@@ -155,10 +162,10 @@ Page({
     var that = this
 
     wx.showActionSheet({
-			itemList: ['查看训练曲线', '保存图片到本地'],
-			success: function(res) {
+      itemList: ['查看训练曲线', '保存图片到本地'],
+      success: function (res) {
         console.log(res.tapIndex)
-        
+
         if (res.tapIndex == 0) {
           that.setData({
             loss: 'block',
@@ -192,12 +199,12 @@ Page({
             }
           })
         }
-			},
-			fail: function(res) {
-				console.log(res.errMsg)
-			}
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
     })
-    
+
 
     /*
     wx.showModal({

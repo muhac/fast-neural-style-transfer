@@ -19,6 +19,16 @@
   align-items: center;
 }
 
+#showloss {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  background-color: #607D8B;
+  opacity: 0.9;
+  align-items: center;
+}
+
 #shadow {
   width: 850rpx;
   height: 50rpx;

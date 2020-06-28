@@ -9,6 +9,7 @@ Page({
     generate: '',
     block: 'none',
     showimg: 'none',
+    loss: 'none',
     style: 1,
     style_pos: [220, 5],
   },
@@ -129,20 +130,76 @@ Page({
   },
 
   showImage: function () {
+    console.log("show")
     this.setData({
       showimg: 'block'
     })
   },
 
   hideImage: function () {
+    console.log("hide")
     this.setData({
       showimg: 'none'
     })
   },
 
+  hideLoss: function () {
+    this.setData({
+      showimg: 'block',
+      loss: 'none'
+    })
+  },
+
   downImage: function () {
+    console.log("down")
     var that = this
 
+    wx.showActionSheet({
+			itemList: ['查看训练Loss曲线', '保持图片到本地'],
+			success: function(res) {
+        console.log(res.tapIndex)
+        
+        if (res.tapIndex == 0) {
+          that.setData({
+            loss: 'block',
+            showimg: 'none'
+          })
+        }
+
+        if (res.tapIndex == 1) {
+          var timestamp = new Date().getTime();
+          var aa = wx.getFileSystemManager();
+          aa.writeFile({
+            filePath: wx.env.USER_DATA_PATH + '/' + timestamp + '.png',
+            data: that.data.generate,
+            encoding: 'base64',
+            success: res => {
+              wx.saveImageToPhotosAlbum({
+                filePath: wx.env.USER_DATA_PATH + '/' + timestamp + '.png',
+                success: function (res) {
+                  wx.showToast({
+                    title: '保存成功',
+                  })
+                },
+                fail: function (err) {
+                  console.log(err)
+                }
+              })
+              console.log(res)
+            },
+            fail: err => {
+              console.log(err)
+            }
+          })
+        }
+			},
+			fail: function(res) {
+				console.log(res.errMsg)
+			}
+    })
+    
+
+    /*
     wx.showModal({
       title: '保存图片',
       content: '保存图片到系统相册',
@@ -179,5 +236,6 @@ Page({
         }
       }
     })
+    */
   }
 })

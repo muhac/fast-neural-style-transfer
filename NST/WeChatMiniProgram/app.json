@@ -4,17 +4,11 @@
     "pages/logs/logs"
   ],
   "window": {
-    "backgroundTextStyle": 
-      "dark",
-    "navigationBarBackgroundColor": 
-      "#607D8B",
-    "navigationBarTitleText": 
-      "风格迁移",
-    "navigationBarTextStyle": 
-      "white"
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#607D8B",
+    "navigationBarTitleText": "风格迁移",
+    "navigationBarTextStyle": "white"
   },
-  "style": 
-    "v2",
-  "sitemapLocation": 
-    "sitemap.json"
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
 }

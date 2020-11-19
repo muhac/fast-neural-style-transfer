@@ -1,199 +1,163 @@
 <!--index.wxml-->
 
-<!--
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+  <div id="block" style="display:{{block}}"></div>
+
+  <view id="showimg" style="display:{{showimg}}" bindtap="hideImage">
+    <image
+      class="images-show"
+      style="z-index: 2000"
+      src="data:image/png;base64,{{generate}}"
+      mode="aspectFit"
+      catchtap="downImage"
+    >
+    </image>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+
+  <view id="showloss" style="display:{{loss}}" bindtap="hideLoss">
+    <image
+      class="images-show"
+      src="http://fnst.demo.lmh.li/source/miniprogram/out/loss.png"
+      mode="aspectFit"
+    >
+    </image>
   </view>
-</view>
--->
 
-<view 
-	class="container">
-		<div 
-			id='block' 
-			style='display:{{block}}'>
-		</div>
+  <div id="shadow"></div>
 
-	<view 
-		id='showimg' 
-		style='display:{{showimg}}' 
-		bindtap="hideImage">
-			<image 
-				class="images-show" 
-				style="z-index:2000" 
-				src="data:image/png;base64,{{generate}}" 
-				mode="aspectFit" 
-				catchtap="downImage">
-			</image>
-	</view>
+  <div class="head"></div>
 
-	<view 
-		id='showloss' 
-		style='display:{{loss}}' 
-		bindtap="hideLoss">
-			<image 
-				class="images-show" 
-				src="http://fnst.demo.lmh.li/source/miniprogram/out/loss.png" 
-				mode="aspectFit">
-			</image>
-	</view>
+  <!-- <h2>上传内容图片</h2> -->
+  <view wx:if="{{generate}}" class="images-wrapper" id="show">
+    <image
+      class="images images-up"
+      src="data:image/png;base64,{{generate}}"
+      mode="aspectFill"
+      bindtap="showImage"
+    >
+    </image>
+  </view>
+  <view wx:else class="images-wrapper">
+    <image
+      class="images images-x"
+      wx:if="{{imgFile}}"
+      src="../../img/x.png"
+      mode="aspectFill"
+      bindtap="deleteImage"
+    >
+    </image>
+    <image
+      class="images images-up"
+      wx:if="{{imgFile}}"
+      src="{{imgFile}}"
+      mode="aspectFill"
+      bindtap="deleteImage"
+    >
+    </image>
+    <image
+      class="images images-up s"
+      wx:else
+      src="../../img/up.png"
+      mode="aspectFill"
+      bindtap="chooseImage"
+    >
+    </image>
+  </view>
 
-	<div 
-		id='shadow'>
-	</div>
+  <div class="mid"></div>
 
-	<div 
-		class="head">
-	</div>
+  <!-- <h2>选择风格图片</h2> -->
+  <div class="images-wrapper">
+    <image
+      class="images images-o"
+      style="left:{{style_pos[0]}}rpx;top:{{style_pos[1]}}rpx"
+      src="../../img/o.png"
+      mode="aspectFill"
+      bindtap="deleteImage"
+    >
+    </image>
 
-	<!-- <h2>上传内容图片</h2> -->
-	<view 
-		wx:if="{{generate}}" 
-		class="images-wrapper" 
-		id="show">
-			<image 
-				class="images images-up" 
-				src="data:image/png;base64,{{generate}}" 
-				mode="aspectFill" 
-				bindtap="showImage">
-			</image>
-	</view>
-	<view 
-		wx:else 
-		class="images-wrapper">
-			<image 
-				class="images images-x" 
-				wx:if="{{imgFile}}" 
-				src="../../img/x.png" 
-				mode="aspectFill" 
-				bindtap="deleteImage">
-			</image>
-			<image 
-				class="images images-up" 
-				wx:if="{{imgFile}}" 
-				src="{{imgFile}}" 
-				mode="aspectFill" 
-				bindtap="deleteImage">
-			</image>
-			<image 
-				class="images images-up s" 
-				wx:else src="../../img/up.png" 
-				mode="aspectFill" 
-				bindtap="chooseImage">
-			</image>
-	</view>
+    <image
+      class="images"
+      src="http://fnst.demo.lmh.li/source/miniprogram/img/1_line_geometry.jpg"
+      mode="aspectFill"
+      bindtap="chooseStyle"
+      data-index="1"
+    >
+    </image>
+    <image
+      class="images"
+      src="http://fnst.demo.lmh.li/source/miniprogram/img/2_mona_lisa.jpg"
+      mode="aspectFill"
+      bindtap="chooseStyle"
+      data-index="2"
+    >
+    </image>
+    <image
+      class="images"
+      src="http://fnst.demo.lmh.li/source/miniprogram/img/3_rain_princess.jpg"
+      mode="aspectFill"
+      bindtap="chooseStyle"
+      data-index="3"
+    >
+    </image>
+    <image
+      class="images"
+      src="http://fnst.demo.lmh.li/source/miniprogram/img/4_starry_night.jpeg"
+      mode="aspectFill"
+      bindtap="chooseStyle"
+      data-index="4"
+    >
+    </image>
+    <image
+      class="images"
+      src="http://fnst.demo.lmh.li/source/miniprogram/img/5_wave.jpg"
+      mode="aspectFill"
+      bindtap="chooseStyle"
+      data-index="5"
+    >
+    </image>
+    <image
+      class="images"
+      src="http://fnst.demo.lmh.li/source/miniprogram/img/6_plaid_portrait.jpg"
+      mode="aspectFill"
+      bindtap="chooseStyle"
+      data-index="6"
+    >
+    </image>
+    <image
+      class="images"
+      src="http://fnst.demo.lmh.li/source/miniprogram/img/7_obama_hope.jpg"
+      mode="aspectFill"
+      bindtap="chooseStyle"
+      data-index="7"
+    >
+    </image>
+    <image
+      class="images"
+      src="http://fnst.demo.lmh.li/source/miniprogram/img/8_sunday_afternoon.jpg"
+      mode="aspectFill"
+      bindtap="chooseStyle"
+      data-index="8"
+    >
+    </image>
+    <image
+      class="images"
+      src="http://fnst.demo.lmh.li/source/miniprogram/img/9_the_scream.jpg"
+      mode="aspectFill"
+      bindtap="chooseStyle"
+      data-index="9"
+    >
+    </image>
+  </div>
 
-	<div 
-		class="mid">
-	</div>
-
-	<!-- <h2>选择风格图片</h2> -->
-	<div 
-		class="images-wrapper">
-			<image 
-				class="images images-o" 
-				style="left:{{style_pos[0]}}rpx;top:{{style_pos[1]}}rpx" 
-				src="../../img/o.png" 
-				mode="aspectFill" 
-				bindtap="deleteImage">
-			</image>
-
-			<image 
-				class="images" 
-				src="http://fnst.demo.lmh.li/source/miniprogram/img/1_line_geometry.jpg" 
-				mode="aspectFill" 
-				bindtap="chooseStyle" 
-				data-index="1">
-			</image>
-			<image 
-				class="images" 
-				src="http://fnst.demo.lmh.li/source/miniprogram/img/2_mona_lisa.jpg" 
-				mode="aspectFill" 
-				bindtap="chooseStyle" 
-				data-index="2">
-			</image>
-			<image 
-				class="images" 
-				src="http://fnst.demo.lmh.li/source/miniprogram/img/3_rain_princess.jpg" 
-				mode="aspectFill" 
-				bindtap="chooseStyle" 
-				data-index="3">
-			</image>
-			<image 
-				class="images" 
-				src="http://fnst.demo.lmh.li/source/miniprogram/img/4_starry_night.jpeg" 
-				mode="aspectFill" 
-				bindtap="chooseStyle" 
-				data-index="4">
-			</image>
-			<image 
-				class="images" 
-				src="http://fnst.demo.lmh.li/source/miniprogram/img/5_wave.jpg" 
-				mode="aspectFill" 
-				bindtap="chooseStyle" 
-				data-index="5">
-			</image>
-			<image 
-				class="images" 
-				src="http://fnst.demo.lmh.li/source/miniprogram/img/6_plaid_portrait.jpg" 
-				mode="aspectFill" 
-				bindtap="chooseStyle" 
-				data-index="6">
-			</image>
-			<image 
-				class="images" 
-				src="http://fnst.demo.lmh.li/source/miniprogram/img/7_obama_hope.jpg" 
-				mode="aspectFill" 
-				bindtap="chooseStyle" 
-				data-index="7">
-			</image>
-			<image 
-				class="images" 
-				src="http://fnst.demo.lmh.li/source/miniprogram/img/8_sunday_afternoon.jpg" 
-				mode="aspectFill" 
-				bindtap="chooseStyle" 
-				data-index="8">
-			</image>
-			<image 
-				class="images" 
-				src="http://fnst.demo.lmh.li/source/miniprogram/img/9_the_scream.jpg" 
-				mode="aspectFill" 
-				bindtap="chooseStyle" 
-				data-index="9">
-			</image>
-	</div>
-
-	<view 
-		wx:if="{{generate}}" 
-		class="submit s">
-			<button 
-				type="default" 
-				bindtap="chooseImage">
-					更 换 图 片
-			</button>
-	</view>
-	<view 
-		wx:else 
-		class="submit s">
-			<button 
-				wx:if="{{imgFile}}" 
-				type="default" 
-				bindtap="uploadImage">
-					风 格 迁 移
-			</button>
-			<button 
-				wx:else 
-				type="default" 
-				bindtap="chooseImage">
-					添 加 图 片
-			</button>
-	</view>
+  <view wx:if="{{generate}}" class="submit s">
+    <button type="default" bindtap="chooseImage">更 换 图 片</button>
+  </view>
+  <view wx:else class="submit s">
+    <button wx:if="{{imgFile}}" type="default" bindtap="uploadImage">
+      风 格 迁 移
+    </button>
+    <button wx:else type="default" bindtap="chooseImage">添 加 图 片</button>
+  </view>
 </view>

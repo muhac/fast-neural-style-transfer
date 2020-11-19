@@ -1,125 +1,246 @@
 /**index.wxss**/
 
 #block {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  z-index: 1000;
-  background-color: #607D8B;
-  opacity: 0;
+  position: 
+    absolute;
+  width: 
+    100vw;
+  height: 
+    100vh;
+  z-index: 
+    1000;
+  background-color: 
+    #607D8B;
+  opacity: 
+    0;
 }
 
 #showimg {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  z-index: 1000;
-  background-color: #607D8B;
-  opacity: 0.9;
-  align-items: center;
+  position: 
+    absolute;
+  width: 
+    100vw;
+  height: 
+    100vh;
+  z-index: 
+    1000;
+  background-color: 
+    #607D8B;
+  opacity: 
+    0.9;
+  align-items: 
+    center;
 }
 
 #showloss {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  z-index: 1000;
-  background-color: #607D8B;
-  opacity: 0.9;
-  align-items: center;
+  position: 
+    absolute;
+  width: 
+    100vw;
+  height: 
+    100vh;
+  z-index: 
+    1000;
+  background-color: 
+    #607D8B;
+  opacity: 
+    0.9;
+  align-items: 
+    center;
 }
 
 #shadow {
-  width: 850rpx;
-  height: 50rpx;
-  position: absolute;
-  top: -40rpx;
-  box-shadow: 0 20rpx 30rpx -12rpx #78909C;
-  background-color: #607D8B;
-  margin-bottom: 20rpx;
-  z-index: 100;
+  width: 
+    850rpx;
+  height: 
+    50rpx;
+  position: 
+    absolute;
+  top: 
+    -40rpx;
+  box-shadow: 
+    0 
+    20rpx 
+    30rpx 
+    -12rpx 
+    #78909C;
+  background-color: 
+    #607D8B;
+  margin-bottom: 
+    20rpx;
+  z-index: 
+    100;
 }
 
 h2 {
-  padding: 20rpx 40rpx;
-  margin-top: 60rpx;
-  margin-bottom: 20rpx;
-  display: block;
+  padding: 
+    20rpx 
+    40rpx;
+  margin-top: 
+    60rpx;
+  margin-bottom: 
+    20rpx;
+  display: 
+    block;
 }
 
 .submit {
-  margin-top: 60rpx;
-  margin-bottom: 100rpx;
+  margin-top: 
+    60rpx;
+  margin-bottom: 
+    100rpx;
 }
 
 .images {
-  padding: 2rpx;
-  margin: 2rpx;
-  width: 200rpx;
-  height: 200rpx;
-  box-sizing: border-box;
+  padding: 
+    2rpx;
+  margin: 
+    2rpx;
+  width: 
+    200rpx;
+  height: 
+    200rpx;
+  box-sizing: 
+    border-box;
 }
 
 .images-up {
-  width: 302rpx;
-  height: 302rpx;
+  width: 
+    302rpx;
+  height: 
+    302rpx;
 }
 
 .images-show {
-  width: 100vw;
-  margin: 350rpx 0 0 0;
+  width: 
+    100vw;
+  margin: 
+    350rpx 
+    0 
+    0 
+    0;
 }
 
 .images-x {
-  z-index: 90;
-  padding: 3rpx;
-  margin: 0;
-  width: 50rpx;
-  height: 50rpx;
-  box-sizing: border-box;
-  position: absolute;
-  left: 252rpx;
-  top: 3rpx;
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
+  z-index: 
+    90;
+  padding: 
+    3rpx;
+  margin: 
+    0;
+  width: 
+    50rpx;
+  height: 
+    50rpx;
+  box-sizing: 
+    border-box;
+  position: 
+    absolute;
+  left: 
+    252rpx;
+  top: 
+    3rpx;
+  background-color: 
+    rgba(
+      0, 
+      0, 
+      0, 
+      0.1
+    );
+  border-radius: 
+    50%;
 }
 
 .images-o {
-  z-index: 90;
-  padding: 3rpx;
-  margin: 0;
-  width: 50rpx;
-  height: 50rpx;
-  box-sizing: border-box;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
+  z-index: 
+    90;
+  padding: 
+    3rpx;
+  margin: 
+    0;
+  width: 
+    50rpx;
+  height: 
+    50rpx;
+  box-sizing: 
+    border-box;
+  position: 
+    absolute;
+  background-color: 
+    rgba(
+      0, 
+      0, 
+      0, 
+      0.1
+    );
+  border-radius: 
+    50%;
 }
 
 .images-wrapper {
-  padding: 0;
-  margin: 0;
-  text-align: center;
-  line-height: 0;
-  position: relative;
+  padding: 
+    0;
+  margin: 
+    0;
+  text-align: 
+    center;
+  line-height: 
+    0;
+  position: 
+    relative;
 }
 
 .s {
-  background-color: #efeeee;
-  border: 2rpx solid rgba(255, 255, 255, 0.20);
-  border-radius: 24rpx;
-  box-shadow: -12rpx -12rpx 52rpx 0 rgba(255, 255, 255, 0.83),
-    12rpx 12rpx 32rpx 0 rgba(217, 210, 200, 0.51);
+  background-color: 
+    #efeeee;
+  border: 
+    2rpx 
+    solid 
+    rgba(
+      255, 
+      255, 
+      255, 
+      0.20
+    );
+  border-radius: 
+    24rpx;
+  box-shadow: 
+    -12rpx 
+    -12rpx 
+    52rpx 
+    0 
+    rgba(
+      255, 
+      255, 
+      255, 
+      0.83
+    ),
+    12rpx 
+    12rpx 
+    32rpx 
+    0 
+    rgba(
+      217, 
+      210, 
+      200, 
+      0.51
+    );
 }
 
 .head {
-  margin-top: 85rpx;
+  margin-top: 
+    85rpx;
 }
 
 .mid {
-  margin-top: 65rpx;
-  margin-bottom: 50rpx;
-  height: 1rpx;
-  width: 450rpx;
-  background-color: #444444;
+  margin-top: 
+    65rpx;
+  margin-bottom: 
+    50rpx;
+  height: 
+    1rpx;
+  width: 
+    450rpx;
+  background-color: 
+    #444444;
 }

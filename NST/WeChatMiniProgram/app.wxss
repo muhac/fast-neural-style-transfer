@@ -1,13 +1,22 @@
 /**app.wxss**/
 
 .container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  background-color: #F6F6F6;
+  height:
+    100vh;
+  display:
+    flex;
+  flex-direction:
+    column;
+  align-items:
+    center;
+  justify-content:
+    space-between;
+  box-sizing:
+    border-box;
+  padding:
+    0;
+  margin:
+    0;
+  background-color:
+    #F6F6F6;
 }

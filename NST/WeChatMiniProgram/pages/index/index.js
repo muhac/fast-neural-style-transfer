@@ -73,10 +73,9 @@ Page({
     });
 
     wx.showToast({
-      title: "由于个人服务器资源有限\n\
-           请稍等几秒返回计算结果",
+      title: "计算中，请稍候",
       icon: "none",
-      duration: 6000,
+      duration: 8000,
       mask: true,
     });
 

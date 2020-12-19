@@ -30,7 +30,7 @@
 }
 
 #shadow {
-  width: 850rpx;
+  width: 100vw;
   height: 50rpx;
   position: absolute;
   top: -40rpx;

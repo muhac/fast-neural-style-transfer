@@ -1,13 +1,14 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/index/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#607D8B",
     "navigationBarTitleText": "风格迁移",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": false,
+    "disableScroll": true
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
